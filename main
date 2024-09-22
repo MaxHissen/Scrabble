@@ -1,0 +1,55 @@
+
+#include <iostream>  // This header file is needed for input and output operations
+#include <vector>
+#include <array>
+#include <string>
+#include <chrono>
+#include <cmath>
+#include "board.cpp"
+
+
+int main() {
+    using namespace std::chrono;
+
+    auto start = high_resolution_clock::now();
+    
+    //program
+
+
+
+    Board board;
+    board.initialize();
+    board.print();
+    while (true){
+
+        std::cout << board.turn << " TO PLAY" << '\n';
+
+        int x;
+        std::cout << "X: ";
+        std::cin >> x;
+
+        int y;
+        std::cout << "Y: ";
+        std::cin >> y;
+
+        bool vertical;
+        std::cout << "VERTICAL? 1 or 0: ";
+        std::cin >> vertical;
+
+        std::cout << "WORD: ";
+        std::string input;
+        std::cin >> input;
+
+        board.write_word(x, y, vertical, input);
+        board.print();
+    }
+
+
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(end - start);
+    
+    std::cout << "Elapsed time: " << duration.count() << " microseconds" << std::endl;
+
+    return 0;  // Return 0 to indicate that the program ended successfully
+}
